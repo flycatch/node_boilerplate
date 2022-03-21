@@ -1,0 +1,60 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "import"
+    ],
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:import/recommended",
+        "plugin:import/typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2016,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true,
+                "project": "./tsconfig.json"
+            }
+        }
+    },
+    "rules": {
+        "max-len": [ "error", { "code": 150 } ],
+        "class-methods-use-this": "off",
+        "no-restricted-imports": ["error", { "patterns": [".*" ] }],
+        "import/prefer-default-export": "off",
+        "import/order": [
+            "error",
+            {
+                "newlines-between": "never",
+                "groups": [
+                    [ "builtin", "external" ],
+                    ["internal", "parent", "sibling","index"]
+                ]
+            }
+        ],
+        "@typescript-eslint/indent": [ "error", 4 ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": [ "error", { "argsIgnorePattern": "^_" }],
+        "@typescript-eslint/no-empty-interface": [
+            "error",
+            {
+              "allowSingleExtends": true
+            }
+        ],
+        "no-underscore-dangle": [ "error", { "allow": ["_id"] } ],
+        "import/no-cycle": [ "off" ],
+        "no-param-reassign": ["error", { "props": false }],
+        "no-plusplus": [ "off" ]
+    }
+}
