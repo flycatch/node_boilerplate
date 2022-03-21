@@ -1,17 +1,34 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "outDir": "./build",
     "strict": true,
-    "sourceMap": true,
-    "removeComments": true,
+    "target": "es2016",
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "newLine": "lf",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "experimentalDecorators": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./src/main",
+    "paths": {
+      "@utils/*": ["node/utils/*"],
+      "@services/*": ["node/services/*"],
+      "@commands": ["node/commands/index.commands"],
+      "@config/*": ["node/config/*"],
+      "@properties": ["resources/app.properties"],
+      "@resources/*": ["resources/*"],
+      "@app/*": ["node/*"]
+    }
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*",
+    "src/**/*.json",
   ]
 }
