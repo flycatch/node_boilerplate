@@ -1,14 +1,14 @@
 import {
     cyan, green, red,
 } from 'chalk';
-import { config } from '@config/app.config';
+import { AppConfig } from '@config';
 
 const levels = ['ERROR', 'INFO', 'DEBUG'] as const;
 
 type LogLevel = typeof levels[number];
 
 export const log = (level: LogLevel = 'INFO', ...msg: any[]) => {
-    let index = levels.indexOf(config.log.level as LogLevel);
+    let index = levels.indexOf(AppConfig.config.log.level as LogLevel);
     index = index === -1 ? levels.indexOf('ERROR') : index;
     if (levels.indexOf(level) <= index) {
         switch (level) {

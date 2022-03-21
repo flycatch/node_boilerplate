@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { commands } from '@commands';
 import { Command } from '@commands/Command';
-import { config } from '@config/app.config';
+import { AppConfig } from '@config';
 import { AppUtils } from '@utils/app.utils';
 import { Cli, Flag } from '@utils/cli.utils';
 
@@ -16,9 +16,9 @@ export class HelpCommand implements Command {
 
     private static readonly yellowInverse = chalk.bold.inverse.yellow;
 
-    private cliName: string = config.app.name;
+    private cliName: string = AppConfig.config.app.name;
 
-    private cliDesc: string = config.app.desc;
+    private cliDesc: string = AppConfig.config.app.desc;
 
     constructor(
         readonly desc: string = 'Get help for the cli and commands',

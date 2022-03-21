@@ -22,6 +22,7 @@
       "@services/*": ["node/services/*"],
       "@commands/*": ["node/commands/*"],
       "@commands": ["node/commands/index.commands"],
+      "@config": ["node/config/index.config"],
       "@config/*": ["node/config/*"],
       "@properties": ["resources/app.properties"],
       "@resources/*": ["resources/*"],
