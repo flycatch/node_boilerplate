@@ -1,4 +1,4 @@
-import { Cli, Flag } from "../utils/cli.utils";
+import { Cli, Flag } from '@utils/cli.utils';
 
 export interface Command {
     readonly desc: string;

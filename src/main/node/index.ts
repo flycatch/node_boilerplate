@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { Command } from "./commands/Command";
-import { handleUnhandledErrors } from "./services/error-handler.service";
-import { AppUtils } from "./utils/app.utils";
-import { getCli } from "./utils/cli.utils";
+import { handleUnhandledErrors } from '@services/error-handler.service';
+import { AppUtils } from '@utils/app.utils';
+import { getCli } from '@utils/cli.utils';
+import { Command } from '@commands/Command';
 
 (async () => {
     handleUnhandledErrors();
@@ -12,5 +12,5 @@ import { getCli } from "./utils/cli.utils";
         await command.run(cli);
         process.exit(0);
     }
-    throw new Error("command not found");
+    throw new Error('command not found');
 })();
