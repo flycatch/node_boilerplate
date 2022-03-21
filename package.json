@@ -2,7 +2,7 @@
   "name": "node_boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/main/node/index.ts",
   "bin": {
     "npi": "build/index.js"
   },
