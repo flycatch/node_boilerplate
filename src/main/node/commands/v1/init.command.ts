@@ -7,9 +7,9 @@ import ncp from 'ncp';
 import path from 'path';
 import { projectInstall } from 'pkg-install';
 import { promisify } from 'util';
-import { Command } from '@commands/Command';
 import { log } from '@services/log.service';
-import { Cli, Flag } from '@utils/cli.utils';
+import { MeowConfig } from '@config';
+import { Command } from '@commands/Command';
 
 const copy = promisify(ncp);
 type Template = 'typescript' | 'javascript';
@@ -27,9 +27,9 @@ export class InitCommand implements Command {
 
     constructor(
         readonly desc: string = 'initialize current directory for a node web api project',
-        readonly flags: Record<string, Flag> = {
+        readonly flags: Record<string, MeowConfig.Flag> = {
             install: {
-                type: 'boolean', alias: 'i', default: false, desc: 'install packages via npm/yarn',
+                type: 'boolean', alias: 'i', default: false, desc: 'install packages via npm',
             },
             git: {
                 type: 'boolean', alias: 'g', default: false, desc: 'initialize as a new git repository',
@@ -37,11 +37,13 @@ export class InitCommand implements Command {
             yes: {
                 type: 'boolean', alias: 'y', default: false, desc: 'use default options',
             },
-            target: { type: 'string', default: 'current working directory', desc: 'target folder to generate project' },
+            target: {
+                type: 'string', default: 'current working directory', desc: 'target folder to generate project',
+            },
         },
     ) { }
 
-    async run(cli: Cli) {
+    async run(cli: MeowConfig.Cli) {
         let options = this.parseFlags(cli);
         options = await this.prompt(options);
         options.target = options.target === this.flags.target.default ? process.cwd() : options.target;
@@ -91,7 +93,7 @@ export class InitCommand implements Command {
         log('DEBUG', `${chalk.green.bold('DONE')} project initialized`);
     }
 
-    private parseFlags(cli: Cli): Options {
+    private parseFlags(cli: MeowConfig.Cli): Options {
         const { flags } = cli;
         return {
             skipPrompts: (flags.yes as boolean),

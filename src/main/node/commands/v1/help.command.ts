@@ -1,9 +1,10 @@
 import chalk from 'chalk';
+import {
+    MeowConfig, AppConfig,
+} from '@config';
 import { commands } from '@commands';
 import { Command } from '@commands/Command';
-import { AppConfig } from '@config';
 import { AppUtils } from '@utils/app.utils';
-import { Cli, Flag } from '@utils/cli.utils';
 
 export class HelpCommand implements Command {
     private static readonly spacer: string = '\n\n';
@@ -23,10 +24,10 @@ export class HelpCommand implements Command {
     constructor(
         readonly desc: string = 'Get help for the cli and commands',
         readonly usage: string = `${chalk.cyan('help')} ${chalk.cyan('[commands]')}`,
-        readonly flags: Record<string, Flag> = {},
+        readonly flags: Record<string, MeowConfig.Flag> = {},
     ) { }
 
-    async run(cli: Cli) {
+    async run(cli: MeowConfig.Cli) {
         if (cli.input[0]) {
             const command = AppUtils.getCommand(cli.input[0]);
             if (command) {
