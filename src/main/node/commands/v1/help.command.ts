@@ -1,9 +1,10 @@
 import chalk from 'chalk';
-import {
-    MeowConfig, AppConfig,
-} from '@config';
 import { commands } from '@commands';
 import { Command } from '@commands/Command';
+import {
+    MeowConfig,
+} from '@config';
+import { properties } from '@properties';
 import { AppUtils } from '@utils/app.utils';
 
 export class HelpCommand implements Command {
@@ -16,10 +17,6 @@ export class HelpCommand implements Command {
     private static readonly cyanInverse = chalk.bold.inverse.cyan;
 
     private static readonly yellowInverse = chalk.bold.inverse.yellow;
-
-    private cliName: string = AppConfig.config.app.name;
-
-    private cliDesc: string = AppConfig.config.app.desc;
 
     constructor(
         readonly desc: string = 'Get help for the cli and commands',
@@ -43,7 +40,7 @@ export class HelpCommand implements Command {
         let help = '\n  ';
         help += (command.desc || '') + HelpCommand.spacer;
         help += `  ${HelpCommand.greenInverse(' USAGE ')} ${HelpCommand.spacer}`;
-        help += `   ${chalk.gray('$')} ${chalk.green(this.cliName)} `;
+        help += `   ${chalk.gray('$')} ${chalk.green(properties.app.name)} `;
         name = chalk.cyan(name);
         help += command.usage || (command.flags ? `${name} ${chalk.yellow('[options]')}` : `${name}`);
         help += HelpCommand.spacer;
@@ -65,9 +62,10 @@ export class HelpCommand implements Command {
     }
 
     public generateHelp(): string {
-        let help = (this.cliDesc || '') + HelpCommand.spacer;
+        let help = (properties.app.desc || '') + HelpCommand.spacer;
         help += HelpCommand.greenInverse(' USAGE ') + HelpCommand.spacer;
-        help += ` ${chalk.gray('$')} ${chalk.green(this.cliName)} ${chalk.cyan('<commands>')} ${chalk.yellow('[options]')}${HelpCommand.spacer}`;
+        help
+        += ` ${chalk.gray('$')} ${chalk.green(properties.app.name)} ${chalk.cyan('<commands>')} ${chalk.yellow('[options]')}${HelpCommand.spacer}`;
         help += HelpCommand.cyanInverse(' COMMANDS ') + HelpCommand.spacer;
         const table = AppUtils.createTable();
         Object.keys(commands).forEach((key) => {
@@ -79,7 +77,7 @@ export class HelpCommand implements Command {
         });
         help += table.toString() + HelpCommand.spacer;
         help += chalk.dim('For more info on a command type:\n');
-        help += chalk.gray('  $ ') + chalk.green(this.cliName) + chalk.cyan(' help ') + chalk.cyan('<command>');
+        help += chalk.gray('  $ ') + chalk.green(properties.app.name) + chalk.cyan(' help ') + chalk.cyan('<command>');
         return help;
     }
 }
