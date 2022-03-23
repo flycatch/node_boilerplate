@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import { Command } from '@commands/Command';
 import { MeowConfig } from '@config';
 import { handleUnhandledErrors } from '@services/error-handler.service';
-import { AppUtils } from '@utils/app.utils';
+import { AppUtils } from '@utils';
 
 (async () => {
     handleUnhandledErrors();
-    const command: Command | undefined = AppUtils.getCommand();
+    const args = process.argv;
+    const command = args.length >= 3 ? AppUtils.getCommand(args[2]) : undefined;
     if (command) {
         const cli = MeowConfig.config(command);
         await command.run(cli);

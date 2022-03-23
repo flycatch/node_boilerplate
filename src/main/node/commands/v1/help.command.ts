@@ -5,7 +5,7 @@ import {
     MeowConfig,
 } from '@config';
 import { properties } from '@properties';
-import { AppUtils } from '@utils/app.utils';
+import { AppUtils } from '@utils';
 
 export class HelpCommand implements Command {
     private static readonly spacer: string = '\n\n';
@@ -64,8 +64,8 @@ export class HelpCommand implements Command {
     public generateHelp(): string {
         let help = (properties.app.desc || '') + HelpCommand.spacer;
         help += HelpCommand.greenInverse(' USAGE ') + HelpCommand.spacer;
-        help
-        += ` ${chalk.gray('$')} ${chalk.green(properties.app.name)} ${chalk.cyan('<commands>')} ${chalk.yellow('[options]')}${HelpCommand.spacer}`;
+        help += ` ${chalk.gray('$')} ${chalk.green(properties.app.name)} ${chalk.cyan('<commands>')} ${chalk.yellow('[options]')}`;
+        help += HelpCommand.spacer;
         help += HelpCommand.cyanInverse(' COMMANDS ') + HelpCommand.spacer;
         const table = AppUtils.createTable();
         Object.keys(commands).forEach((key) => {
