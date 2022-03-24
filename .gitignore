@@ -108,3 +108,6 @@ dist
 
 #vscode
 .vscode
+
+#husky
+.husky

@@ -1,0 +1,4 @@
+{
+    "pre-commit": "npx lint-staged .",
+    "post-merge": "npm ci"
+}
