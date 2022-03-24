@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/main/node/index.ts",
   "bin": {
-    "npi": "build/index.js"
+    "npi": "dist/main/node/index.js"
   },
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/main/node/index.ts",
