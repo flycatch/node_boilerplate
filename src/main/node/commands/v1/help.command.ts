@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { commands } from '@commands';
 import { Command } from '@commands/Command';
 import {
+    log,
     MeowConfig,
 } from '@config';
 import { properties } from '@properties';
@@ -28,7 +29,7 @@ export class HelpCommand implements Command {
         if (cli.input[0]) {
             const command = AppUtils.getCommand(cli.input[0]);
             if (command) {
-                console.log(this.generateCommandHelp(cli.input[0], command));
+                log.print(this.generateCommandHelp(cli.input[0], command));
                 return;
             }
         }

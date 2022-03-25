@@ -1,7 +1,7 @@
-import { log } from '@services/log.service';
+import { log } from '@config';
 
 export const handleError = (err: Error | { [key in string]: any } | undefined | null, exit = false) => {
-    log('ERROR', err?.message);
+    log.error(err);
     if (exit) {
         process.exit(0);
     }

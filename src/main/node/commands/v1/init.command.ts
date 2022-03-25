@@ -7,8 +7,7 @@ import ncp from 'ncp';
 import path from 'path';
 import { projectInstall } from 'pkg-install';
 import { promisify } from 'util';
-import { log } from '@services/log.service';
-import { MeowConfig } from '@config';
+import { log, MeowConfig } from '@config';
 import { Command } from '@commands/Command';
 
 const copy = promisify(ncp);
@@ -65,11 +64,11 @@ export class InitCommand implements Command {
                 enabled: () => options.runInstall,
             },
         ]).run();
-        log('INFO', `${chalk.green.inverse.bold(' DONE ')} project ready`);
+        log.info(`${chalk.green.inverse.bold(' DONE ')} project ready`);
     }
 
     private async initGit(options: Options) {
-        log('DEBUG', 'initializing git');
+        log.debug('initializing git');
         const result = await execa('git', ['init'], {
             cwd: options.target,
         });
@@ -79,8 +78,8 @@ export class InitCommand implements Command {
     }
 
     private async initProject(options: Options) {
-        log('DEBUG', 'options', JSON.stringify(options));
-        log('DEBUG', `initilizing ${options.template} npi project`);
+        log.debug('options', JSON.stringify(options));
+        log.debug(`initilizing ${options.template} npi project`);
         const templateDir = path.resolve(__dirname, '../../../templates', options.template as string);
         await copy(templateDir, options.target as string, { clobber: true });
         await fs.promises.readFile(path.join(options.target as string, 'package.json'))
@@ -90,7 +89,7 @@ export class InitCommand implements Command {
                 return fs.promises.writeFile(path.join(options.target as string, 'package.json'), JSON.stringify(p, null, 2));
             })
             .catch((_err) => { });
-        log('DEBUG', `${chalk.green.bold('DONE')} project initialized`);
+        log.debug(`${chalk.green.bold('DONE')} project initialized`);
     }
 
     private parseFlags(cli: MeowConfig.Cli): Options {
