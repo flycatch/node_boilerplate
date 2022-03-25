@@ -56,7 +56,8 @@
     "listr": "^0.14.2",
     "meow": "^9.0.0",
     "ncp": "^2.0.0",
-    "pkg-install": "^1.0.0"
+    "pkg-install": "^1.0.0",
+    "winston": "^3.6.0"
   },
   "pkg": {
     "scripts": "build/**/*.js",
