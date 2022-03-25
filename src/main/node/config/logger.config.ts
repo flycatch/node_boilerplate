@@ -32,8 +32,6 @@ export const log = <CustomLogger>winston.createLogger({
         }),
     ),
     transports: [
-        new winston.transports.Console({
-            level: 'print',
-        }),
+        new winston.transports.Console(),
     ],
 });
