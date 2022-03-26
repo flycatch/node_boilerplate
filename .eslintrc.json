@@ -52,7 +52,6 @@
               "allowSingleExtends": true
             }
         ],
-        "no-underscore-dangle": [ "error", { "allow": ["_id"] } ],
         "import/no-cycle": [ "off" ],
         "no-param-reassign": ["error", { "props": false }],
         "no-plusplus": [ "off" ]
