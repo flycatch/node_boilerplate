@@ -1,3 +1,10 @@
+/**
+ * This method uses javascript proxy to achieve a lazy intialization of a class.
+ * ie an object is instantiated only when its properties are accessed
+ *
+ * @param instantiator this function returns the object that should be created.
+ * @returns a proxy wrapping the created object
+ */
 export const lazy = <T extends object>(instantiator: () => T, init?: T) => {
     const handler = {
         instance: undefined as any,
