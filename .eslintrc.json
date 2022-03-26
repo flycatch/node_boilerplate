@@ -59,6 +59,7 @@
             "selector": ["variable"],
             "format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
             "trailingUnderscore": "allow"
-        }]
+        }],
+        "no-underscore-dangle": ["off"]
     }
 }
