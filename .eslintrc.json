@@ -54,6 +54,11 @@
         ],
         "import/no-cycle": [ "off" ],
         "no-param-reassign": ["error", { "props": false }],
-        "no-plusplus": [ "off" ]
+        "no-plusplus": [ "off" ],
+        "@typescript-eslint/naming-convention": ["error", {
+            "selector": ["variable"],
+            "format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
+            "trailingUnderscore": "allow"
+        }]
     }
 }
