@@ -1,4 +1,4 @@
-import DefaultGitService from '@services/git/default-git.service';
+import { DefaultGitService } from '@services/git/default-git.service';
 import { GitService } from '@services/git/git.service';
 import { ObjectUtils } from '@utils';
 

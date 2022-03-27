@@ -2,7 +2,7 @@ import execa from 'execa';
 import { log } from '@config';
 import { GitService } from '@services/git/git.service';
 
-export default class DefaultGitService implements GitService {
+export class DefaultGitService implements GitService {
     private static instance: DefaultGitService;
 
     public static getInstance() {
