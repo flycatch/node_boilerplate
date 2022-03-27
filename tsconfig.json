@@ -21,6 +21,7 @@
       "@constants": ["node/constants"],
       "@utils": ["node/utils/index.util"],
       "@utils/*": ["node/utils/*"],
+      "@flags/*": ["node/flags/*"],
       "@services/*": ["node/services/*"],
       "@commands/*": ["node/commands/*"],
       "@commands": ["node/commands/index.commands"],
