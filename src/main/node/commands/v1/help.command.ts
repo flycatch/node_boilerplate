@@ -5,10 +5,12 @@ import {
     log,
     MeowConfig,
 } from '@config';
+import { constants } from '@constants';
+import { BaseFlag } from '@flags/base.flag';
 import { properties } from '@properties';
 import { AppUtils } from '@utils';
 
-export class HelpCommand implements Command {
+export class HelpCommand implements Command<BaseFlag> {
     private static readonly spacer: string = '\n\n';
 
     private static readonly dim = chalk.dim;
@@ -20,9 +22,9 @@ export class HelpCommand implements Command {
     private static readonly yellowInverse = chalk.bold.inverse.yellow;
 
     constructor(
-        readonly desc: string = 'Get help for the cli and commands',
+        readonly desc: string = constants.HELP_COMMAND_DESC,
         readonly usage: string = `${chalk.cyan('help')} ${chalk.cyan('[commands]')}`,
-        readonly flags: Record<string, MeowConfig.Flag> = {},
+        readonly flags = {},
     ) { }
 
     async run(cli: MeowConfig.Cli) {
@@ -36,7 +38,7 @@ export class HelpCommand implements Command {
         cli.showHelp();
     }
 
-    public generateCommandHelp(commandName: string, command: Command): string {
+    public generateCommandHelp(commandName: string, command: Command<any>): string {
         let name = commandName;
         let help = '\n  ';
         help += (command.desc || '') + HelpCommand.spacer;
@@ -70,7 +72,7 @@ export class HelpCommand implements Command {
         help += HelpCommand.cyanInverse(' COMMANDS ') + HelpCommand.spacer;
         const table = AppUtils.createTable();
         Object.keys(commands).forEach((key) => {
-            const command = commands[key as keyof typeof commands] as Command;
+            const command = commands[key as keyof typeof commands] as Command<any>;
             const alias = command.alias ? `, ${command.alias}` : '';
             table.push(
                 [chalk.cyan(`${key}${alias}`), command.desc],

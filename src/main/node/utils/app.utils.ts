@@ -2,12 +2,12 @@ import Table from 'cli-table3';
 import { Command } from '@commands/Command';
 import { commands } from '@commands/index.commands';
 
-export const getCommand = (cmd?: string): Command | undefined => {
+export const getCommand = (cmd?: string): Command<any> | undefined => {
     if (cmd) {
         if (cmd in commands) {
             return commands[cmd as keyof typeof commands];
         }
-        return Object.values(commands).map((c) => c as Command).find((c) => c.alias && c.alias === cmd);
+        return Object.values(commands).map((c) => c as Command<any>).find((c) => c.alias && c.alias === cmd);
     }
     return undefined;
 };
